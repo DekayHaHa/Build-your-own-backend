@@ -46,6 +46,7 @@ app.get('/api/v1/cities/:id', (req, res) => {
 });
 
 app.get('/api/v1/cities/:id/markets', (req, res) => {
+  //
   database('markets').where('city_id', req.params.id).select()
     .then(markets => {
       if (markets.length) {
@@ -63,4 +64,5 @@ app.get('/api/v1/cities/:id/markets', (req, res) => {
 
 // 4 GET endpoints ****
 // 2 POST endpoints
+// how to add market to existing city
 // 1 DELETE endpoint
