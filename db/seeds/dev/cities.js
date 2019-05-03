@@ -13,7 +13,6 @@ const createCity = (knex, city) => {
           createMarket(knex, {
             name: market.name,
             address: market.address,
-            time: market.time,
             city_id: cityId[0]
           })
         )
