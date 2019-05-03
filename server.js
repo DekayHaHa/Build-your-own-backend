@@ -81,8 +81,8 @@ app.post('/api/v1/cities', (req, res) => {
 });
 
 app.post('/api/v1/market/:id', (req, res) => {
-  const market = req.body;
-  const cityId = req.params.id
+  const city_id = req.params.id
+  const market = { ...req.body, city_id };
   const errorMsg = { error: 'Expected both Name and Address of the market' }
   if (!market.name || !market.address) return res.status(422).send(errorMsg)
 
