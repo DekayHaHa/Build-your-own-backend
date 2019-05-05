@@ -45,9 +45,9 @@ app.get('/api/v1/cities/:id', (req, res) => {
     });
 });
 
-app.get('/api/v1/cities/:id/markets', (req, res) => {
+app.get('/api/v1/cities/markets/:id', (req, res) => {
   //
-  database('markets').where('city_id', req.params.id).select()
+  database('markets').where('id', req.params.id).select()
     .then(markets => {
       if (markets.length) {
         res.status(200).json(markets);
@@ -61,10 +61,6 @@ app.get('/api/v1/cities/:id/markets', (req, res) => {
       res.status(500).json({ error });
     });
 });
-
-app.post('', () => {
-
-})
 
 app.post('/api/v1/cities', (req, res) => {
   const city = req.body;
@@ -80,7 +76,7 @@ app.post('/api/v1/cities', (req, res) => {
     });
 });
 
-app.post('/api/v1/market/:id', (req, res) => {
+app.post('/api/v1/city/:id/markets', (req, res) => {
   const city_id = req.params.id
   const market = { ...req.body, city_id };
   const errorMsg = { error: 'Expected both Name and Address of the market' }
@@ -95,7 +91,16 @@ app.post('/api/v1/market/:id', (req, res) => {
     });
 });
 
-// 4 GET endpoints ****
-// 2 POST endpoints
-// how to add market to existing city
-// 1 DELETE endpoint
+
+app.delete('/api/v1/cities/markets/:id', (req, res) => {
+  const id = req.params.id
+
+  database('markets').where('id', id).del()
+    .then(num => {
+      if (num == 0) return res.status(404).json('No Market Found')
+      res.status(201).json(`# deleted: ${num}`)
+    })
+    .catch(error => {
+      res.status(500).json({ error });
+    });
+});
