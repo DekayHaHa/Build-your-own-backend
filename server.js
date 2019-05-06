@@ -6,26 +6,31 @@ const database = require('knex')(configuration);
 app.use(express.json())
 app.set('port', process.env.PORT || 3000)
 
-
-app.listen(app.get('port'), () => console.log(`Listening!`));
-
 app.get('/api/v1/cities', (req, res) => {
+  // get request with no params for citites
   database('cities').select()
+    // selects the cities table in the database
     .then((cities) => {
       res.status(200).json(cities);
+      // responds with all cities in database
     })
     .catch((error) => {
       res.status(500).json({ error });
+      // responds with 500 if database errors out
     });
 });
 
 app.get('/api/v1/markets', (req, res) => {
+  // get request with no params for markets
   database('markets').select()
+    // selects the markets table in the databse
     .then((markets) => {
       res.status(200).json(markets);
+      // responds with all markets
     })
     .catch((error) => {
       res.status(500).json({ error });
+      // responds with 500 if database errors out
     });
 });
 
@@ -42,6 +47,7 @@ app.get('/api/v1/cities/:id', (req, res) => {
     })
     .catch(error => {
       res.status(500).json({ error });
+      // responds with 500 if database errors out
     });
 });
 
@@ -59,6 +65,7 @@ app.get('/api/v1/cities/markets/:id', (req, res) => {
     })
     .catch(error => {
       res.status(500).json({ error });
+      // responds with 500 if database errors out
     });
 });
 
@@ -73,6 +80,7 @@ app.post('/api/v1/cities', (req, res) => {
     })
     .catch(error => {
       res.status(500).json({ error });
+      // responds with 500 if database errors out
     });
 });
 
@@ -88,6 +96,7 @@ app.post('/api/v1/city/:id/markets', (req, res) => {
     })
     .catch(error => {
       res.status(500).json({ error });
+      // responds with 500 if database errors out
     });
 });
 
@@ -102,5 +111,6 @@ app.delete('/api/v1/cities/markets/:id', (req, res) => {
     })
     .catch(error => {
       res.status(500).json({ error });
+      // responds with 500 if database errors out
     });
 });
