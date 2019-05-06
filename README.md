@@ -3,7 +3,8 @@
 A database that provides users with the top ten google maps results of  farmers markets to a specific city.
 
 Created by: Devin Kapla
-with: Node.js, Express.js, Knex.js and hosted on Heroku
+
+with: Node.js, Express.js, Knex.js, and deployed on Heroku
 
 I built this database with the intention of learning more about the backend common practices. But I also plan to use this Database in future projects/apps that have a focus on being a local consumer.
 
